@@ -1,0 +1,264 @@
+%% Load base
+\documentclass{article}
+
+%% Load additional packages
+\usepackage[utf8]{inputenc}
+\usepackage[none]{hyphenat}
+\usepackage[vietnamese]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{mathdots}
+
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor, framed}
+\usepackage{fancyhdr}
+
+%% Define additional commands
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Định lý}[section]
+\newtheorem{corollary}[theorem]{Hệ quả}
+\newtheorem{lemma}[theorem]{Bổ đề}
+\newtheorem{proposition}[theorem]{Mệnh đề}
+\newtheorem{example}[theorem]{Ví dụ}
+\newtheorem{definition}[theorem]{Định nghĩa}
+\newtheorem{exercise}[theorem]{Bài toán}
+\newtheorem{remark}[theorem]{Nhận xét}
+\newtheorem{conjecture}[theorem]{Phỏng đoán}
+\newtheorem{properties}[theorem]{Tính chất}
+
+%% Set parameters
+\setlength\parindent{0pt}
+\colorlet{shadecolor}{yellow}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Số học giải tích}
+\lhead{\thesection}
+\rfoot{Trang \thepage}
+
+\title{Số học giải tích}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Phương pháp tiệm cận (growth rate analysis)}
+\begin{theorem}
+Cho một đa thức hệ số thực $P(x) = a_d x^d + a_{d - 1} x^{d - 1} + \cdots + a_1 x + a_0$ (với $a_d \neq 0$). Chứng minh rằng
+\begin{enumerate}
+	\item $\lim_{x \to \infty} \frac{P(x)}{x^d} = \lim_{x \to -\infty} \frac{P(x)}{x^d} = \lim_{|x| \to \infty} \frac{|P(x)|}{|x|^d} = a_d$. Nói cách khác, với mọi $\varepsilon > 0$, tồn tại $M > 0$, sao cho $(1 - \varepsilon) a_d |x|^d < |P(x)| < (1 + \varepsilon) a_d |x|^d$ với mọi $|x| \geq M$.
+	\item Tồn tại $M > 0$ sao cho $|P(x)| > |P(y)|$ với mọi $|x| > |y| \geq M$. Nói cách khác, $|P(x)|$ tăng nghiêm ngặt khi $x$ đủ lớn, hoặc $x$ đủ nhỏ (với $x < 0$).
+	\item Với mọi $0 < C_1 < |a_d| < C_2$, tồn tại $M > 0$ (dựa trên $C_1, C_2$) sao cho $C_1 |x|^d < |P(x)| < C_2 |x|^d$ với mọi $|x| \geq M$.
+	\item Nếu $Q(x)$ là một đa thức với bậc nhỏ hơn bậc của $P(x)$, tồn tại $M > 0$ sao cho $|P(x)| > |Q(x)|$ với mọi $|x| \geq M$. Nói cách khác, $|P(x)| > |Q(x)|$ khi $x$ đủ lớn.
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+Nếu $p(x)$ là một đa thức đơn khởi bậc $d$, và $(x_n)$ là dãy số được cho bởi $x_0 = x, x_{n + 1} = p(x_n)$ ($n \geq 0$), ta có $x_n \sim x^{d^n}$.
+\end{remark}
+\begin{exercise} \ \\
+$p(x)$ là đa thức hệ số nguyên sao cho $p(n) > n$ với mọi số tự nhiên $n$. $(x_k)$ là dãy số sao cho $x_1 = 1, x_{i + 1} = p(x_i)$, và với mỗi số nguyên $N$ khác không, có một $x_i$ chia hết cho $N$. Chứng minh $p(x) = x + 1$.
+\end{exercise}
+\ \\
+\begin{exercise}
+Xác định tất cả các đa thức $P(x)$ hệ số nguyên sao cho, với mọi số nguyên dương $n$, phương trình $P(x) = 2^n$ có nghiệm nguyên.
+\end{exercise}
+\begin{exercise} \ \\
+Cho đa thức đơn khởi, bậc chẵn, hệ số nguyên $P(x)$ sao cho với vô số số nguyên $n$, $P(n)$ là một số chính phương. Chứng minh rằng tồn tại một đa thức hệ số nguyên khác $Q(x)$ sao cho $P(x) = Q(x)^2$.
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả các đa thức $P(x), Q(x)$ hệ số nguyên thỏa mãn điều sau: nếu $(x_n)$ là dãy số được định nghĩa bởi
+$$x_0 = 2014, x_{2n + 1} = P(x_{2n}), x_{2n + 2} = Q(x_{2n + 1}) \qquad n \geq 0$$
+Mỗi số nguyên dương $m$ là ước của một phần tử $x_n$ khác không trong dãy.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $P(x)$ là một đa thức hệ số nguyên khác hằng, và $n$ là một số tự nhiên. Gọi $(a_n)_{n \geq 0}$ là một dãy số sao cho $a_0 = n, a_k = P(a_{k - 1})$.
+\\
+\\
+Giả sử với mỗi số tự nhiên $b$, có một phần tử trong dãy là lũy thừa với số mũ $b$ và thừa số lớn hơn $1$ (hay nói cách khác, tồn tại $a_i$ sao cho $\sqrt[b]{a_i}$ là một số nguyên dương khác $1$).
+\\
+\\
+Chứng minh rằng bậc của $P(x)$ là $1$.
+\end{exercise}
+\begin{exercise} \ \\
+Tìm số thực $\alpha$ lớn nhất sao cho tồn tại một dãy số nguyên $(a_n)$ thỏa mãn các điều sau
+\begin{enumerate}
+	\item $a_n > 1997^n$ với mọi $n \geq 1$.
+	\item Với mỗi $n \geq 2$, $U_n \geq a_n^\alpha$, với $U_n = \gcd \{ a_i + a_k \mid i + k = n \}$.
+\end{enumerate}
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả đa thức hệ số nguyên sao cho với mọi số thực $s$ và $t$, nếu $P(s)$ và $P(t)$ nguyên, ta có $P(st)$ cũng nguyên.
+\end{exercise}
+\ \\
+\begin{exercise} \ \\
+Cho các lớp đồng dư $\{ a_1 \bmod{m_1}, a_2 \bmod{m_2}, \hdots, a_k \bmod{m_k} \}$ (với $m_1, m_2, \hdots, m_k \geq 2$). Ta gọi hệ này là
+\begin{enumerate}
+	\item Hệ thặng dư \emph{đầy đủ} nếu mỗi số nguyên thuộc ít nhất một lớp đồng dư $a_i \bmod{m_i}$. Hay nói cách khác, với mỗi số nguyên $n$, tồn tại $1 \leq i \leq k$ sao cho $n \equiv a_i \pmod{m_i}$.
+	\item Hệ thặng dư \emph{chính xác} nếu mỗi số nguyên thuộc nhiều nhất một lớp đồng dư $a_i \bmod{m_i}$. Hay nói cách khác, không tồn tại số nguyên $n$, và $i \neq j$ sao cho $n \equiv a_i \pmod{m_i}$ và $n \equiv a_j \pmod{m_j}$.
+\end{enumerate}
+Ví dụ, $\{ 1 \bmod{2}, 2 \bmod{4}, 4 \bmod{8}, 0 \bmod{8} \}$ là một hệ thặng dư đầy đủ và chính xác, tuy nhiên có 2 lớp đồng dư có chung một modulo.  $\{ 0 \bmod{2}, 0 \bmod{3}, 1 \bmod{4}, 5 \bmod{6}, 7 \bmod{12} \}$ là một hệ thặng dư đầy đủ khác với các lớp đồng dư có modulo đôi một khác nhau, nhưng không chính xác.
+\\
+\\
+Liệu có tồn tại hay không một hệ thặng dư đầy đủ và chính xác, với modulo của các lớp đồng dư đôi một khác nhau?
+\end{exercise}
+
+\newpage
+
+\section{Phương pháp dãy số nguyên}
+\begin{theorem} \label{int-conv-seq}
+Nếu $(x_n)$ là một dãy số nguyên hội tụ, $x_n$ phải là hằng số với $n$ đủ lớn. Nói cách khác, tồn tại một số nguyên $a$ và số tự nhiên $N$ sao cho $x_n = a$ với mọi $n \geq N$.
+\end{theorem}
+\begin{exercise}
+Giả sử $f(x), g(x)$ là các đa thức hệ số nguyên khác hằng sao cho $f(n) \mid g(n)$ với vô hạn số nguyên $n$. Chứng minh tồn tại một đa thức \textit{hữu tỷ} $q(x)$ sao cho $g(x) = f(x) q(x)$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $a, b, c$ là các số nguyên với $a \neq 0$, sao cho $an^2 + bn + c$ là một số chính phương với mọi $n \in \mathbb{Z}$. Chứng minh rằng tồn tại 2 số nguyên $x, y$ sao cho $a = x^2, b = 2xy, c = y^2$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $a, b$ là 2 số nguyên sao cho $a \cdot 2^n + b$ luôn là một số chính phương với mọi số nguyên dương $n$. Chứng minh rằng $a = 0$.
+\end{exercise}
+\ \\
+\begin{exercise} \ \\
+Cho $a_1, a_2, \hdots, a_k$ là các số thực sao cho có ít nhất một số không phải là số nguyên. Chứng minh tồn tại vô hạn số nguyên $n$ sao cho $n$ và $\lfloor a_1 n \rfloor + \lfloor a_2 n \rfloor + \cdots + \lfloor a_k n \rfloor$ nguyên tố cùng nhau.
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả đa thức hệ số nguyên $P(x)$ sao cho $P(\mathbb{Z}) = \{ p(a) : a \in \mathbb{Z} \}$ có chứa một cấp số nhân vô hạn (với công bội khác $0, \pm 1$).
+\\
+\\
+Hay nói cách khác, tìm tất cả các đa thức hệ số nguyên $P(x)$ sao cho tồn tại một số thực $r \notin \{ 0, \pm 1 \}$ và một dãy số nguyên $(a_n)_{n \geq 0}$ thỏa mãn $P(a_{n + 1}) = r P(a_n)$ với mọi $n \geq 0$.
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả đa thức hệ số thực $f(x)$ sao cho nếu $n$ là một số nguyên chứa toàn chữ số $1$ (trong hệ cơ số 10), $f(n)$ cũng là một số nguyên chứa toàn chữ số $1$.
+\end{exercise}
+\begin{exercise} \ \\
+Giải phương trình đa thức hệ số nguyên
+$$p(x)^2 = (x^2 + 6x + 10) q(x)^2 - 1$$
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả các cấp số cộng $(a_n)_{n \geq 1}$ sao cho $a_1 + a_2 + \cdots + a_n$ là số chính phương với mọi $n \geq 1$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $p(x)$ là một đa thức hệ số nguyên sao cho tồn tại một dãy số nguyên $(a_n)_{n \geq 1}$ đôi một khác nhau sao cho $p(a_1) = 0, p(a_2) = a_1, p(a_3) = a_2, \cdots$. Tìm bậc của đa thức $p(x)$.
+\end{exercise}
+\begin{exercise} \ \\
+Tìm tất cả số nguyên $a, b, c$ sao cho $a \cdot 4^n + b \cdot 6^n + c \cdot 9^n$ là một số chính phương khi $n$ đủ lớn.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $b$ là một số nguyên lớn hơn $5$ và
+$$x_n = \underbrace{11 \cdots 1}_{n - 1} \underbrace{22 \cdots 2}_n 5$$
+là biểu diễn của $x_n$ trong hệ cơ số $b$. Chứng minh $x_n$ là số chính phương với mọi $n$ đủ lớn khi và chỉ khi $b = 10$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $f(x), g(x)$ là 2 đa thức hệ số thực sao cho $\{ f(x) : x \in \mathbb{Q} \} = \{ g(x) : x \in \mathbb{Q} \}$. Chứng minh tồn tại 2 số hữu tỷ $a, b$ sao cho $f(x) = g(ax + b)$.
+\end{exercise}
+\begin{exercise} \ \\
+Giả sử $a$ là một số thực sao cho $1^a, 2^a, 3^a, \cdots$ là các số nguyên. Chứng minh rằng $a$ nguyên.
+\end{exercise}
+
+\newpage
+
+\section{Phương pháp sàng lọc (sieve method)}
+Phương pháp sàng lọc sử dụng ý tưởng từ sàng Eratosthenes để loại ra những số có ước không thỏa mãn một hay nhiều điều kiện nào đó. Nó cũng có thể sử dụng để chứng minh chặn cho nhiều hàm số học.
+\\
+\\
+Gọi $\pi(x)$ là số các số nguyên tố $\leq x$
+\begin{exercise}[Eratosthenes sieve] \ \\
+Chứng minh rằng
+$$\pi(x) - \pi(\sqrt{x}) + 1 = \sum_d \mu (d) \left\lfloor \frac{x}{d} \right\rfloor$$
+với tổng chạy cho các số nguyên dương $d$ sao cho nếu $p$ là ước nguyên tố của $d$, ta có $p \leq \sqrt{x}$.
+\end{exercise}
+\begin{exercise}[Euclid sieve]
+Chứng minh $\pi(x) \geq \log_2 \log_2 x$ với mọi $x \geq 2$.
+\end{exercise}
+\begin{exercise}[Square sieve]
+Chứng minh $\pi(x) \geq \frac{\log_2 x}{2}$ với mọi $x \geq 2$.
+\end{exercise}
+\begin{exercise}
+Chứng minh tổng nghịch đảo các số nguyên tố phân kỳ.
+\end{exercise}
+\ \\
+Tuy nhiên để chặn $\pi(x)$ sao cho $\lim_{x \to \infty} \frac{\pi(x)}{x} = 0$ (hay $\pi(x) = o(x)$), ta giới thiệu một hàm mới
+\begin{exercise}[Binomial sieve] \ \\
+Gọi $\vartheta(x) = \sum_{p \leq x} \ln p$ ($p$ nguyên tố), ta có $\theta(x) < (4 \ln 2) x$ với mọi $x \geq 1$.
+\end{exercise}
+\begin{corollary}[Chebyshev] \ \\
+Tồn tại một hằng số $C > 0$ sao cho $\pi(x) < \frac{Cx}{\ln x}$ với mọi $x \geq 2$.
+\end{corollary}
+\begin{exercise}[Chebyshev] \ \\
+Tồn tại một hằng số $C > 0$ sao cho $\pi(x) > \frac{Cx}{\ln x}$ với mọi $x \geq 2$.
+\end{exercise}
+\begin{exercise}[Bertrand Postulate] \ \\
+Với mọi số nguyên $n \geq 2$, tồn tại một số nguyên tố $p$ sao cho $n < p < 2n$.
+\end{exercise}
+\ \\
+\begin{exercise} \ \\
+Giả sử $n, k$ là các số nguyên dương sao cho
+$$1 = \varphi(\varphi(\cdots \varphi(n) \cdots))$$
+với hàm phi Euler $\varphi$ áp dụng $k$ lần lên $n$ ($\varphi(n)$ là số các số $1 \leq k \leq n$ nguyên tố cùng nhau với $n$). Chứng minh rằng $n \leq 3^k$.
+\end{exercise}
+\begin{exercise} \ \\
+Chứng minh tồn tại vô hạn số nguyên $n$ sao cho $n^2 + 1$ không có ước chính phương.
+\end{exercise}
+\begin{exercise} \ \\
+$\pi(n)$ là số các số nguyên tố không lớn hơn $n$. Với $n = 2, 3, 4, 6, 8, 33, \hdots$, ta có $\pi(n) \mid n$. Liệu có tồn tại vô hạn số nguyên dương $n$ sao cho $\pi(n) \mid n$?
+\end{exercise}
+\begin{exercise} \ \\
+Cho dãy số nguyên dương $(a_n)$ tăng nghiệm ngặt, và gọi $u_n$ là bội chung nhỏ nhất của $n$ phần tử đầu tiên trong dãy. Chứng minh rằng $\sum_{n = 1}^\infty \frac{1}{u_n}$ hội tụ.
+\end{exercise}
+\begin{exercise} \ \\
+Với mỗi $n \geq 2$ nguyên, chọn một đa thức $f(x)$ ngẫu nhiên từ tập hợp các đa thức đơn khởi, bậc $n$, với các hệ số nguyên từ tập $\{ 1, 2, \hdots, n! \}$. $f(x)$ được gọi là một đa thức \textit{đặc biệt} nếu với mọi $k > 1$, có vô hạn số trong dãy $f(1), f(2), \hdots$ nguyên tố cùng nhau với $k$.
+\begin{enumerate}
+	\item Tìm xác suất để $f(x)$ là một đa thức đặc biệt.
+	\item Chứng minh xác suất để $f(x)$ đặc biệt nhỏ hơn $0,75$.
+	\item Chứng minh xác suất để $f(x)$ đặc biệt lớn hơn $0,71$.
+\end{enumerate}
+\end{exercise}
+
+\newpage
+
+\section{Tổng nghịch đảo}
+\begin{lemma}
+Cho $p_1, p_2, \hdots, p_k$ là các số nguyên tố, chứng minh rằng với mọi $s > 1$, ta có
+$$\sum_n \frac{1}{n^s} = \prod_{i = 1}^k \frac{1}{1 - \frac{1}{p_i^s}}$$
+Với tổng bên trái là tổng các số tự nhiên $n$ có dạng $p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_k^{\alpha_k}$ ($\alpha_1, \alpha_2, \hdots, \alpha_k \geq 0$).
+\end{lemma}
+\begin{corollary} \label{sum-reciprocal-prime-diverge}
+Chứng minh tổng nghịch đảo các số nguyên tố phân kỳ.
+\end{corollary}
+\begin{exercise}
+Gọi $p_1, p_2, \hdots, p_k$ là tất cả số nguyên tố nhỏ hơn $m$, chứng minh rằng
+$$\sum_{i = 1}^k \frac{1}{p_i} + \frac{1}{p_i^2} > \ln \ln m$$
+\end{exercise}
+\ \\
+\begin{exercise}
+Gọi $p_n$ là số nguyên tố thứ $n$ và $\nu$ là một số thực lớn hơn $1$. Chứng minh rằng dãy $\lfloor p_n \nu \rfloor$ có vô hạn ước nguyên tố.
+\end{exercise}
+\begin{exercise} \ \\
+Giả sử $f$ là một đa thức hệ số nguyên, và $(a_n)$ là một dãy nguyên dương tăng nghiêm ngặt sao cho $a_n \leq f(n)$. Chứng minh có vô hạn số nguyên tố $p$ sao cho $p$ là ước của một phần tử $a_n$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $(a_n)_{n \geq 1}$ là một hoán vị của tập các số nguyên dương. Chứng minh rằng với mọi $\gamma > \frac{3}{4}$, tồn tại vô hạn số $i$ sao cho $\gcd(a_i, a_{i + 1}) \leq \gamma i$.
+\end{exercise}
+\begin{exercise} \ \\
+Cho $a_1, a_2, \hdots$ là các số nguyên dương đôi một khác nhau, và $0 < c < \frac{3}{2}$. Chứng minh rằng tồn tại vô hạn số nguyên dương $k$ sao cho $\operatorname{lcm}(a_k, a_{k + 1}) > ck$.
+\end{exercise}
+\begin{exercise} \ \\
+Giả sử $\alpha$ là một số thực dương và $(a_n)_{n \geq 1}$ là một dãy tự nhiên tăng nghiệm ngặt sao cho $a_n \leq n^\alpha$ với mọi $n \geq 1$. Gọi một số nguyên tố $q$ \textit{vàng} nếu có một phần tử $a_m$ chia hết cho $q$. Gọi $(q_n)_{n \geq 1}$ là dãy các số nguyên tố vàng theo thứ tự tăng dần.
+\begin{enumerate}
+	\item Chứng minh rằng nếu $\alpha = 1.5$, ta có $q_n \leq 1390^n$. Có chặn trên nào tốt hơn cho $q_n$ không?
+	\item Chứng minh rằng nếu $\alpha = 2.4$, ta có $q_n \leq 1390^{2n}$. Có chặn trên nào tốt hơn cho $q_n$ không?
+\end{enumerate}
+\end{exercise}
+
+\end{document}
